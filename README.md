@@ -55,7 +55,9 @@ The system operates through a sequential multi-agent pipeline managed by LangGra
    Converts the report into a downloadable PDF file.
 
 ---
-<img src="https://raw.githubusercontent.com/archanags001/streamlit-ai-guide/main/images/imag_streamlitAI_result.png" alt="Streamlit AI Guide Interaction" width="700">
+<img src="https://github.com/archanags001/AI-Report-Generator/blob/e442097159d8e8aa5a667f320333ea3d4df1b00d/images/architecture_report_gen.png" alt="architecture report gen" width="700">
+
+
 ---
 
 ## 🧰 Technologies Used
