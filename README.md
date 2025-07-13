@@ -125,3 +125,23 @@ In the Streamlit interface, use the file uploader to select your CSV file.
 4. Provide Instructions:
 In the text area, enter clear instructions on what you want to analyze or find in
 
+---
+
+Here's a quick example 
+
+<img src="https://github.com/archanags001/AI-Report-Generator/blob/48a61d00c5fccaaa0ed53233db8d45c5add79be8/images/report_ai_generated.png" alt="report gen" width="700">
+
+
+
+## License
+
+This project is licensed under the MIT License – see the [LICENSE](https://github.com/archanags001/streamlit-ai-guide/blob/main/LICENSE) file for details.
+
+## Contact
+archanags001@gmail.com
+
+
+
+
+
+
