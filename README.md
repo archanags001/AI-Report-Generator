@@ -65,7 +65,7 @@ The system operates through a sequential multi-agent pipeline managed by LangGra
 - **Data Visualization**: [Matplotlib](https://matplotlib.org/) & [Seaborn](https://seaborn.pydata.org/)
 - **LLM**: Google Gemini 2.5 Flash (via `langchain-google-genai`)
 - **PDF Generation**: [WeasyPrint](https://weasyprint.org/)
-- **Environment Management**: [`python-dotenv`](https://pypi.org/project/python-dotenv/)
+
 
 ---
 ## 🗂 Project Structure
@@ -87,7 +87,7 @@ AI-Report-Generator/
 │ ├── graph.py # Defines the main LangGraph workflow definition.
 │ └── state.py # Defines the GraphState TypedDict, the shared state object.
 └── schemas/ # Pydantic models for structured data and LLM output.
-└── messages.py # Data structures used across agents.
+   └── messages.py # Data structures used across agents.
 ├── streamlit_app.py 
 ```
 
