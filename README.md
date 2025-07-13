@@ -14,7 +14,6 @@ This project offers an AI-powered way to automate the entire process of transfor
 - "Generate a comprehensive report on product performance."
 
 Let’s make data analysis simple and direct!
-
 ---
 
 ## ✨ Features
@@ -55,6 +54,8 @@ The system operates through a sequential multi-agent pipeline managed by LangGra
 7. **Report Finalization**  
    Converts the report into a downloadable PDF file.
 
+---
+<img src="https://raw.githubusercontent.com/archanags001/streamlit-ai-guide/main/images/imag_streamlitAI_result.png" alt="Streamlit AI Guide Interaction" width="700">
 ---
 
 ## 🧰 Technologies Used
