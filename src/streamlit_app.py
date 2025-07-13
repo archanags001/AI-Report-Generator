@@ -98,7 +98,7 @@ def check_instruction_relevance(uploaded_file, user_instructions: str) -> str:
 
 
 st.set_page_config(page_title="AI Report Generator", layout="wide")
-st.title("📊 AI-Powered Data Analysis & Report Generator")
+st.title("📊 AI Data Analysis & Report Generator")
 
 st.markdown("""
     Upload your CSV, provide instructions, and let the AI generate a comprehensive report.
