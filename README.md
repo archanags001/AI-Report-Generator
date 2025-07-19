@@ -113,7 +113,7 @@ Create a .env file in the root directory and add your API key:
 ```
 GOOGLE_API_KEY="YOUR_GEMINI_API_KEY_HERE"
 ```
-4. Run the Streamlit AI Guide
+4. Run the AI Data Analyst & Report Generator
 
 1. Open your terminal
 2. Run this command:
@@ -135,7 +135,7 @@ Here's a quick example
 
 ## License
 
-This project is licensed under the MIT License – see the [LICENSE](https://github.com/archanags001/AI-Report-Generator/blob/cd92ff454fc2d544f8ba1da37065a9a573e4f61f/License) file for details.
+This project is licensed under the MIT License – see the [LICENSE](https://github.com/archanags001/AI-Report-Generator/blob/main/License) file for details.
 
 ## Contact
 archanags001@gmail.com
