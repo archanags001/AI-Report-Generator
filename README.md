@@ -28,6 +28,104 @@ Let’s make data analysis simple and direct!
 - **Multi-Agent Orchestration**: Each task is handled by a dedicated AI agent using LangGraph for modularity and efficiency.
 
 ---
+## Architecture: A Collaborative Multi-Agent System
+
+Our **AI Data Analyst & Report Generator** is built upon a robust and modular multi-agent architecture, with **LangGraph** serving as the central orchestration framework. This design fosters a highly extensible and maintainable system where specialized AI agents autonomously collaborate to accomplish the intricate task of end-to-end report generation.
+
+### Core Architectural Components
+
+- **GraphState**  
+  The central, shared state object acting as the single source of truth for the entire workflow. It carries all relevant data, user instructions, intermediate analytical results, generated artifacts (like charts), and status updates across all agents, ensuring seamless information flow and consistent context.
+
+- **Agent Nodes**  
+  Each stage of the data analysis and reporting process is encapsulated within a dedicated AI agent, implemented as a node within the LangGraph workflow. Every node has a clearly defined responsibility, promoting separation of concerns.
+
+- **Directed Edges**  
+  LangGraph defines the flow of information and control between agent nodes via directed edges. These ensure a logical progression through the analytical pipeline.
+
+- **Conditional Edges**  
+  Conditional edges enable dynamic decision-making. For example, the system can decide whether to generate visualizations or proceed directly to insight extraction, depending on the analysis plan.
+
+> This architecture promotes clarity, simplifies debugging, and provides a flexible foundation for future enhancements. New agents can be added or existing ones modified without overhauling the system.
+
+---
+
+## Agent Roles and Responsibilities
+
+Each agent in the LangGraph workflow plays a distinct role in automating the report generation process.
+
+---
+
+### 📊 Data Profiling Agent
+
+- **Role**: Initial data ingestion, cleaning, and profiling.
+- **Responsibilities**:
+  - Reads CSV data.
+  - Identifies data types.
+  - Calculates descriptive statistics (mean, median, std, unique counts, missing values).
+  - Flags potential data quality issues.
+- **Output**: `DataProfile` object containing metadata and initial observations.
+
+---
+
+### 🧠 Analysis Planning Agent
+
+- **Role**: Formulates a strategic analysis and visualization plan.
+- **Responsibilities**:
+  - Interprets the `DataProfile` and user instructions.
+  - Determines analytical approaches.
+  - Identifies key relationships.
+  - Specifies required visualizations (chart types, axes, titles).
+- **Output**: 
+  - List of `VisualGenerationInstruction` objects.
+  - A high-level `analysis_approach` string.
+
+---
+
+### 📈 Visual Generation Agent
+
+- **Role**: Creates data visualizations based on the analysis plan.
+- **Responsibilities**:
+  - Uses Pandas, Matplotlib, and Seaborn to generate charts (bar, line, scatter, histogram, boxplot).
+  - Saves charts as PNG files.
+- **Output**: List of `GeneratedVisual` objects containing file paths and descriptions.
+
+---
+
+### 🔍 Insight Extraction Agent
+
+- **Role**: Extracts meaningful insights and conclusions.
+- **Responsibilities**:
+  - Analyzes `DataProfile`, visuals, and user instructions.
+  - Identifies trends, anomalies, and key findings.
+- **Output**: List of `AnalysisInsight` objects with titles, narratives, and figure references.
+
+---
+
+### 📝 Report Drafting Agent
+
+- **Role**: Drafts the structured text of the report.
+- **Responsibilities**:
+  - Writes an introduction and insight narratives.
+  - References visuals using placeholders (e.g., `[FIGURE X]`).
+  - Summarizes key takeaways and adds a conclusion.
+- **Output**: `ReportSectionsDraft` object with all textual components.
+
+---
+
+### 📄 Report Finalization Agent
+
+- **Role**: Compiles the final report into publishable formats.
+- **Responsibilities**:
+  - Replaces figure placeholders with actual numbers.
+  - Embeds chart images.
+  - Compiles the report into:
+    - Markdown
+    - HTML
+    - PDF
+- **Output**: `ReportFormat` object with file paths to `.md`, `.html`, and `.pdf` versions.
+
+---
 
 ## ⚙️ How It Works
 
