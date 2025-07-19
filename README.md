@@ -46,7 +46,6 @@ Our **AI Data Analyst & Report Generator** is built upon a robust and modular mu
 - **Conditional Edges**  
   Conditional edges enable dynamic decision-making. For example, the system can decide whether to generate visualizations or proceed directly to insight extraction, depending on the analysis plan.
 
-> This architecture promotes clarity, simplifies debugging, and provides a flexible foundation for future enhancements. New agents can be added or existing ones modified without overhauling the system.
 
 ---
 
