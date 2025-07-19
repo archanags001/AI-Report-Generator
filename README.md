@@ -28,7 +28,7 @@ Let’s make data analysis simple and direct!
 - **Multi-Agent Orchestration**: Each task is handled by a dedicated AI agent using LangGraph for modularity and efficiency.
 
 ---
-## Architecture: A Collaborative Multi-Agent System
+## Architecture
 
 Our **AI Data Analyst & Report Generator** is built upon a robust and modular multi-agent architecture, with **LangGraph** serving as the central orchestration framework. This design fosters a highly extensible and maintainable system where specialized AI agents autonomously collaborate to accomplish the intricate task of end-to-end report generation.
 
