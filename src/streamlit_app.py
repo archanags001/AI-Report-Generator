@@ -38,26 +38,23 @@ def sanitize_filename(filename: str) -> str:
 def display_pdf(pdf_bytes):
     """
     Encodes PDF bytes to base64 and displays them in a Streamlit app using an iframe.
-    Args:
-        pdf_bytes (bytes): The content of the PDF file as bytes.
+    This method is more robust for cloud deployments.
     """
     if pdf_bytes:
-        # Encode the PDF content to a base64 string
         base64_pdf = base64.b64encode(pdf_bytes).decode("utf-8")
-        
-        # Create the HTML for the iframe
         pdf_display_html = f"""
-        <iframe 
-            src="data:application/pdf;base64,{base64_pdf}" 
-            type="application/pdf"
-            style="border: 1px solid #ccc; border-radius: 8px;">
-        </iframe>
+        <div style="width: 100%; height: 600px; border: 1px solid #ccc; border-radius: 8px; overflow: hidden;">
+            <iframe 
+                src="data:application/pdf;base64,{base64_pdf}" 
+                width="100%" 
+                height="100%" 
+                style="border: none;">
+            </iframe>
+        </div>
         """
-        
-        # Display the iframe using st.components.v1.html
-        components.html(pdf_display_html, height=620) # Use components.html and set a specific height
+        # Using components.html is often more reliable than st.markdown for custom HTML
+        components.html(pdf_display_html, height=620)
     else:
-        st.info("You can try running the process again.")
         st.error("No PDF content to display.")
 
 
@@ -214,6 +211,7 @@ if uploaded_file:
                             try:
                                 with open(final_state['final_report'].pdf_file_path, "rb") as file:
                                     pdf_file_content = file.read()
+                                st.write(f"PDF content loaded? {pdf_file_content is not None}")
                             except Exception as e:
                                 st.info("You can try running the process again.")
                                 st.error(f"Error reading PDF file for download/preview: {e}")
@@ -241,7 +239,7 @@ if uploaded_file:
                                 #         unsafe_allow_html=True
                                 #     )
 
-                                # display_pdf(pdf_file_content)
+                                display_pdf(pdf_file_content)
 
                                 # base64_pdf = base64.b64encode(pdf_file_content).decode("utf-8")
                                 # pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="600" type="application/pdf"></iframe>'
