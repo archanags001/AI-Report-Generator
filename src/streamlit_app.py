@@ -70,7 +70,7 @@ st.markdown("""
 uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"])
 
 user_instructions = st.text_area(
-    "✏️ What kind of report or analysis do you need?",
+    "✏️ What kind of report or analysis do you need? (optional)",
     placeholder="e.g., Provide summary statistics and highlight key trends",
     height=120,
     max_chars=200
