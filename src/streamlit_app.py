@@ -189,22 +189,22 @@ if uploaded_file:
                                     key="download_pdf_button"
                                 )
                                 
-                                with st.container():
-                                    st.markdown(
-                                        """
-                                        <style>
-                                        .stContainer > div {
-                                            width: 55%;
-                                            margin: auto;
-                                        }
-                                        </style>
-                                        """,
-                                        unsafe_allow_html=True
-                                    )
+                                # with st.container():
+                                #     st.markdown(
+                                #         """
+                                #         <style>
+                                #         .stContainer > div {
+                                #             width: 55%;
+                                #             margin: auto;
+                                #         }
+                                #         </style>
+                                #         """,
+                                #         unsafe_allow_html=True
+                                #     )
 
-                                    base64_pdf = base64.b64encode(pdf_file_content).decode("utf-8")
-                                    pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="600" type="application/pdf"></iframe>'
-                                    st.markdown(pdf_display, unsafe_allow_html=True)
+                                base64_pdf = base64.b64encode(pdf_file_content).decode("utf-8")
+                                pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="600" type="application/pdf"></iframe>'
+                                st.markdown(pdf_display, unsafe_allow_html=True)
                             else:
                                 st.warning("PDF report content not available for download or preview.")
                                 if "Error generating PDF" in (final_state.get('error_message') or ""):
