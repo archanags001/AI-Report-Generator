@@ -36,47 +36,6 @@ def sanitize_filename(filename: str) -> str:
     return sanitized_name
 
 
-pdf_file_content = b"..." 
-
-def display_pdf_preview(pdf_file_content):
-    """
-    Displays a PDF file within an iframe in a Streamlit app.
-    Args:
-        pdf_file_content: The bytes of the PDF file.
-    """
-    if pdf_file_content:
-        # Encode the PDF content to a base64 string
-        base64_pdf = base64.b64encode(pdf_file_content).decode('utf-8')
-        
-        # Create an iframe element with the base64 data as the source
-        pdf_display = f"""
-        <iframe 
-            src="data:application/pdf;base64,{base64_pdf}" 
-            width="100%" 
-            height="600" 
-            type="application/pdf"
-            style="border: 1px solid #ccc; border-radius: 8px;">
-        </iframe>
-        """
-        
-        # Display the iframe using Streamlit's markdown with HTML enabled
-        st.markdown(pdf_display, unsafe_allow_html=True)
-    else:
-        st.info("PDF content is not available for preview.")
-
-# Example usage within your Streamlit application
-with st.container():
-    # You can apply your custom CSS here if you like
-    st.markdown("""
-        <style>
-        .stContainer > div {
-            width: 55%;
-            margin: auto;
-        }
-        </style>
-        """, unsafe_allow_html=True
-    )
-
 st.set_page_config(page_title="AI Report Generator", layout="wide")
 st.title("📊 AI Data Analyst & Report Generator")
 
@@ -229,23 +188,23 @@ if uploaded_file:
                                     mime="application/pdf",
                                     key="download_pdf_button"
                                 )
-                                display_pdf_preview(pdf_display)
-                                # with st.container():
-                                #     st.markdown(
-                                #         """
-                                #         <style>
-                                #         .stContainer > div {
-                                #             width: 55%;
-                                #             margin: auto;
-                                #         }
-                                #         </style>
-                                #         """,
-                                #         unsafe_allow_html=True
-                                #     )
+                                
+                                with st.container():
+                                    st.markdown(
+                                        """
+                                        <style>
+                                        .stContainer > div {
+                                            width: 55%;
+                                            margin: auto;
+                                        }
+                                        </style>
+                                        """,
+                                        unsafe_allow_html=True
+                                    )
 
-                                #     base64_pdf = base64.b64encode(pdf_file_content).decode("utf-8")
-                                #     pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="600" type="application/pdf"></iframe>'
-                                #     st.markdown(pdf_display, unsafe_allow_html=True)
+                                    base64_pdf = base64.b64encode(pdf_file_content).decode("utf-8")
+                                    pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="600" type="application/pdf"></iframe>'
+                                    st.markdown(pdf_display, unsafe_allow_html=True)
                             else:
                                 st.warning("PDF report content not available for download or preview.")
                                 if "Error generating PDF" in (final_state.get('error_message') or ""):
