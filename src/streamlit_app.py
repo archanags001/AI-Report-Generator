@@ -205,8 +205,9 @@ if uploaded_file:
 
                     # Report display logic
                     if final_state and final_state['final_report']:
-                        if final_state['final_report'].pdf_file_path and os.path.exists(
-                                final_state['final_report'].pdf_file_path):
+                        st.write("final_state, final_state['final_report']")
+                        if final_state['final_report'].pdf_file_path and os.path.exists(final_state['final_report'].pdf_file_path):
+                            st.write("final_state['final_report'].pdf_file_path, os.path.exists(final_state['final_report'].pdf_file_path)")        
                             pdf_file_content = None
                             try:
                                 with open(final_state['final_report'].pdf_file_path, "rb") as file:
