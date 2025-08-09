@@ -124,6 +124,29 @@ Each agent in the LangGraph workflow plays a distinct role in automating the rep
     - PDF
 - **Output**: `ReportFormat` object with file paths to `.md`, `.html`, and `.pdf` versions.
 
+___
+
+## Workflow Diagram
+
+The following diagram illustrates the flow of data and the interaction between the different agents within the system:
+
+```
+graph TD
+    A[User Uploads CSV] --> B(Data Ingestion Agent);
+    B --> C{Data Validation & Cleaning};
+    C -->|Invalid Data & Instructions| I(Notify User of Errors);
+    C -->|Valid Data & Instructions| D(Data Analysis Agent);
+    D --> E(Visualization Agent);
+    E --> F(Report Drafting Agent);
+    F --> G(Safety and Accuracy Check);
+    G --> |If Pass| H[Downloadable PDF Report];
+    G --> |If Fail & Retries Remaining| F;
+    G --> |If Fail & No Retries| J(Notify User of Errors);
+    I --> A;
+    J --> A;
+
+```
+
 ---
 
 ## ⚙️ How It Works
