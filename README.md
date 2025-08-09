@@ -196,8 +196,8 @@ The system operates through a sequential multi-agent pipeline managed by LangGra
 AI-Report-Generator/
 ├── .env # Environment variables (e.g., GOOGLE_API_KEY)
 ├── requirements.txt # Lists all Python dependencies required for the project.
-packages.txt
-└── src/ # Source code directory for the core logic.
+├──packages.txt
+├── src/ # Source code directory for the core logic.
 │   ├── init.py # Initializes the Python package.
 │   ├── agents/ # Contains individual AI agent nodes.
 │   │   ├── data_analysis_node.py # Handles initial data profiling.
@@ -225,7 +225,7 @@ packages.txt
 │    ├── test_builder.py
 │    ├── test_integration.py
 │    └──  test_e2e_workflow.py
-|        
+│        
 │
 └── images
 ```
