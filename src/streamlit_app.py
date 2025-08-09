@@ -58,6 +58,7 @@ def display_pdf(pdf_bytes):
         components.html(pdf_display_html, height=620) # Use components.html and set a specific height
     else:
         st.error("No PDF content to display.")
+        st.info("You can try running the process again.")
 
 
 st.set_page_config(page_title="AI Report Generator", layout="wide")
@@ -122,6 +123,7 @@ if uploaded_file:
             logger.info(f"File saved to: {file_save_path}")
         except Exception as e:
             st.error(f"Error saving file: {e}")
+            st.info("You can try running the process again.")
             logger.error(f"File saving error: {e}", exc_info=True)
             st.stop()
 
@@ -183,6 +185,7 @@ if uploaded_file:
                 # After the loop, check the final state for errors
                 if final_state.get("status") == "error":
                     st.error(f"❌ An error occurred: {final_state.get('error_message')}")
+                    st.info("You can try running the process again.")
                     # Don't proceed to display report content
                 elif final_state.get('status') == 'invalid_instructions':
                     st.warning("⚠️ The AI could not process your instructions.")
@@ -237,14 +240,17 @@ if uploaded_file:
                                 st.warning("PDF report content not available for download or preview.")
                                 if "Error generating PDF" in (final_state.get('error_message') or ""):
                                     st.error("PDF generation failed. Check terminal logs for details.")
+                                    st.info("You can try running the process again.")
                         else:
                             st.warning("PDF report file not found or could not be generated.")
                             if "Error generating PDF" in (final_state.get('error_message') or ""):
                                 st.error("PDF generation failed. Check terminal logs for details.")
+                                st.info("You can try running the process again.")
                     else:
                         st.warning("Final report content not available.")
 
         except Exception as e:
             st.error(f"❌ An unexpected critical error occurred during graph execution: {e}")
+            st.info("You can try running the process again.")
             logger.error(f"An unexpected critical error occurred during graph execution:: {e}", exc_info=True)
             st.stop()
