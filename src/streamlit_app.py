@@ -205,14 +205,12 @@ if uploaded_file:
 
                     # Report display logic
                     if final_state and final_state['final_report']:
-                        st.write("final_state, final_state['final_report']")
                         if final_state['final_report'].pdf_file_path and os.path.exists(final_state['final_report'].pdf_file_path):
-                            st.write("final_state['final_report'].pdf_file_path, os.path.exists(final_state['final_report'].pdf_file_path)")        
                             pdf_file_content = None
                             try:
                                 with open(final_state['final_report'].pdf_file_path, "rb") as file:
                                     pdf_file_content = file.read()
-                                st.write(f"PDF content loaded? {pdf_file_content is not None}")
+                                # st.write(f"PDF content loaded? {pdf_file_content is not None}")
                             except Exception as e:
                                 st.info("You can try running the process again.")
                                 st.error(f"Error reading PDF file for download/preview: {e}")
@@ -240,7 +238,7 @@ if uploaded_file:
                                 #         unsafe_allow_html=True
                                 #     )
 
-                                display_pdf(pdf_file_content)
+                                # display_pdf(pdf_file_content)
 
                                 # base64_pdf = base64.b64encode(pdf_file_content).decode("utf-8")
                                 # pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="600" type="application/pdf"></iframe>'
