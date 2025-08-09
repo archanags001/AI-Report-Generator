@@ -8,7 +8,7 @@ from datetime import datetime
 from graph.state import GraphState
 from graph.builder import create_graph_workflow
 from schemas.messages import GeneratedVisual, AnalysisInsight, ReportSectionsDraft, ReportFormat
-import streamlit.components.v1 as components
+
 
 # Setup logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -202,15 +202,10 @@ if uploaded_file:
                                 #         unsafe_allow_html=True
                                 #     )
 
-                                # base64_pdf = base64.b64encode(pdf_file_content).decode("utf-8")
-                                # pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="600" type="application/pdf"></iframe>'
-                                # st.markdown(pdf_display, unsafe_allow_html=True)
-                                b64_pdf = base64.b64encode(pdf_file_content).decode("utf-8")
-                                pdf_display = f"""
-                                <iframe src="data:application/pdf;base64,{b64_pdf}" width="100%" height="600" type="application/pdf"></iframe>
-                                """
-                                
-                                components.html(pdf_display, height=600)
+                                base64_pdf = base64.b64encode(pdf_file_content).decode("utf-8")
+                                pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="600" type="application/pdf"></iframe>'
+                                st.markdown(pdf_display, unsafe_allow_html=True)
+                            
                                 
                             else:
                                 st.warning("PDF report content not available for download or preview.")
