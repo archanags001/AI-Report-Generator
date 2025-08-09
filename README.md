@@ -196,22 +196,38 @@ The system operates through a sequential multi-agent pipeline managed by LangGra
 AI-Report-Generator/
 ├── .env # Environment variables (e.g., GOOGLE_API_KEY)
 ├── requirements.txt # Lists all Python dependencies required for the project.
+packages.txt
 └── src/ # Source code directory for the core logic.
-├── init.py # Initializes the Python package.
-├── agents/ # Contains individual AI agent nodes.
-│ ├── data_analysis_node.py # Handles initial data profiling.
-│ ├── analysis_planning_node.py # Plans the analytical steps.
-│ ├── visual_generation_node.py # Generates data visualizations.
-│ ├── insight_extraction_node.py # Extracts key insights from data and visuals.
-│ ├── report_drafting_node.py # Drafts the textual content of the report.
-│ └── report_finalization_node.py # Assembles and finalizes the report in PDF format.
-├── graph/ # Defines the LangGraph workflow and shared state.
-│ ├── init.py
-│ ├── graph.py # Defines the main LangGraph workflow definition.
-│ └── state.py # Defines the GraphState TypedDict, the shared state object.
-└── schemas/ # Pydantic models for structured data and LLM output.
-   └── messages.py # Data structures used across agents.
-├── streamlit_app.py 
+│   ├── init.py # Initializes the Python package.
+│   ├── agents/ # Contains individual AI agent nodes.
+│   │   ├── data_analysis_node.py # Handles initial data profiling.
+│   │   ├── analysis_planning_node.py # Plans the analytical steps.
+│   │   ├── visual_generation_node.py # Generates data visualizations.
+│   │   ├── insight_extraction_node.py # Extracts key insights from data and visuals.
+│   │   ├── report_drafting_node.py # Drafts the textual content of the report.
+│   │   ├── safety_node.py # Check the safety of darafts
+│   │   └── report_finalization_node.py # Assembles and finalizes the report in PDF format.
+│   ├── graph/ # Defines the LangGraph workflow and shared state.
+│   │   ├── init.py
+│   │   ├── graph.py # Defines the main LangGraph workflow definition.
+│   │   └── state.py # Defines the GraphState TypedDict, the shared state object.
+│   ├── schemas/ # Pydantic models for structured data and LLM output.
+│   │     └── messages.py # Data structures used across agents.
+│   └── streamlit_app.py
+├── tests
+│    ├── test_data_analysis_node.py # Tests the individual agent nodes.
+│    ├── test_analysis_planning_node.py 
+│    ├── test_visual_generation_node.py 
+│    ├── test_insight_extraction_node.py 
+│    ├── test_report_drafting_node.py
+│    ├── test_safety_node.py
+│    ├── test_report_finalization_node.py
+│    ├── test_builder.py
+│    ├── test_integration.py
+│    └──  test_e2e_workflow.py
+|        
+│
+└── images
 ```
 
 ---
