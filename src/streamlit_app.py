@@ -8,7 +8,7 @@ from datetime import datetime
 from graph.state import GraphState
 from graph.builder import create_graph_workflow
 from schemas.messages import GeneratedVisual, AnalysisInsight, ReportSectionsDraft, ReportFormat
-
+import streamlit.components.v1 as components
 
 # Setup logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -34,6 +34,32 @@ def sanitize_filename(filename: str) -> str:
     sanitized_name = sanitized_name.strip(' .')
     sanitized_name = sanitized_name.replace('..', '_')
     return sanitized_name
+
+def display_pdf(pdf_bytes):
+    """
+    Encodes PDF bytes to base64 and displays them in a Streamlit app using an iframe.
+    Args:
+        pdf_bytes (bytes): The content of the PDF file as bytes.
+    """
+    if pdf_bytes:
+        # Encode the PDF content to a base64 string
+        base64_pdf = base64.b64encode(pdf_bytes).decode("utf-8")
+        
+        # Create the HTML for the iframe
+        pdf_display_html = f"""
+        <iframe 
+            src="data:application/pdf;base64,{base64_pdf}" 
+            width="100%" 
+            height="600" 
+            type="application/pdf"
+            style="border: 1px solid #ccc; border-radius: 8px;">
+        </iframe>
+        """
+        
+        # Display the iframe using st.components.v1.html
+        components.html(pdf_display_html, height=620) # Use components.html and set a specific height
+    else:
+        st.error("No PDF content to display.")
 
 
 st.set_page_config(page_title="AI Report Generator", layout="wide")
@@ -201,6 +227,8 @@ if uploaded_file:
                                 #         """,
                                 #         unsafe_allow_html=True
                                 #     )
+
+                                display_pdf(pdf_file_content)
 
                                 base64_pdf = base64.b64encode(pdf_file_content).decode("utf-8")
                                 pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="600" type="application/pdf"></iframe>'
