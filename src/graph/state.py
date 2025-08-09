@@ -29,3 +29,4 @@ class GraphState(TypedDict):
     feedback_history: Optional[List[UserFeedback]]
     status: str
     error_message: Optional[str]
+    safety_check_retries: int
