@@ -28,17 +28,43 @@ def check_analysis_validity(state: GraphState) -> str:
     return "visualization"
 
 
+# def check_safety_status(state: GraphState) -> str:
+#     """
+#     Decides whether to proceed to report finalization or stop
+#     based on the result of the safety check.
+#     """
+#     if state.get("status") == "error":
+#         logger.error("Safety check failed. Halting workflow.")
+#         return END
+
+#     logger.info("Safety check passed. Proceeding to report finalization.")
+#     return "report_finalization"
+
 def check_safety_status(state: GraphState) -> str:
     """
-    Decides whether to proceed to report finalization or stop
+    Decides whether to proceed to report finalization, retry, or stop
     based on the result of the safety check.
     """
-    if state.get("status") == "error":
-        logger.error("Safety check failed. Halting workflow.")
-        return END
+    max_retries = 2
+    current_retries = state.get("safety_check_retries", 0)
+    current_status = state.get("status")
+
+    if current_status == "error":
+        if current_retries < max_retries:
+            logger.warning(f"Safety check failed. Retrying report drafting. Attempt {current_retries + 1}/{max_retries}.")
+            state['safety_check_retries'] = current_retries + 1
+            state['status'] = "retrying"
+            state['error_message'] = "Safety check failed, attempting to redraft the report."
+            return "report_drafting"
+        else:
+            logger.error(f"Safety check failed after {max_retries} retries. Halting workflow.")
+            state['status'] = "error"
+            state['error_message'] = f"Report generation failed after {max_retries} attempts due to safety checks."
+            return END
 
     logger.info("Safety check passed. Proceeding to report finalization.")
     return "report_finalization"
+    
 
 def create_graph_workflow():
     """
@@ -73,9 +99,19 @@ def create_graph_workflow():
         check_safety_status,
         {
             "report_finalization": "report_finalization",
+            "report_drafting": "report_drafting",  # This is the key line for the retry loop
             END: END
         }
     )
+
+    # workflow.add_conditional_edges(
+    #     "safety_check",
+    #     check_safety_status,
+    #     {
+    #         "report_finalization": "report_finalization",
+    #         END: END
+    #     }
+    # )
     # After report finalization, the graph ends for now.
     workflow.add_edge("report_finalization", END)
 
