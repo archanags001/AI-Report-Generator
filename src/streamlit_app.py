@@ -138,6 +138,7 @@ if uploaded_file:
             "final_report": None,
             "status": "initial",
             "error_message": None,
+            "safety_check_retries": 0,
         }
 
         try:
@@ -155,10 +156,19 @@ if uploaded_file:
                 for i, state in enumerate(workflow_app.stream(initial_state)):
                     for node, current_state in state.items():
                         if node != "__end__":
+                            if current_state.get('status') == 'retrying':
+                                retries = current_state.get('safety_check_retries', 0)
+                                st.warning(f"⚠️ Safety check failed. Retrying report drafting (Attempt {retries} of 2)...")
+                            else:
+                                # Otherwise, show the normal progress messages
+                                progress_value = (steps.index(node) + 1) / len(steps)
+                                progress_bar.progress(progress_value)
+                                status_message.info(step_messages.get(node, f'Processing {node}...'))
+                            
                             # Update the progress bar and status message
-                            progress_value = (i + 1) / len(steps)
-                            progress_bar.progress(progress_value)
-                            status_message.info(step_messages.get(node, f'Processing {node}...'))
+                            # progress_value = (i + 1) / len(steps)
+                            # progress_bar.progress(progress_value)
+                            # status_message.info(step_messages.get(node, f'Processing {node}...'))
                             final_state = current_state
 
                 # After the loop, hide the progress bar
