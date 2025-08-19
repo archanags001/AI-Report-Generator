@@ -224,7 +224,7 @@ AI-Report-Generator/
 │    ├── test_report_finalization_node.py
 │    ├── test_builder.py
 │    ├── test_integration.py
-│    └──  test_e2e_workflow.py
+│    └── test_e2e_workflow.py
 │        
 │
 └── images
