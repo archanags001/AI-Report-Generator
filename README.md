@@ -263,6 +263,28 @@ In the text area, enter clear instructions on what you want to analyze or find i
 
 ---
 
+## Running Tests
+
+To ensure the project is working as expected and to verify any changes you make, you can run the test suite. This section provides instructions on how to execute tests and view coverage reports.
+
+To run the entire test suite, use the following command from the root directory of the project:
+
+```
+PYTHONPATH=./src pytest
+```
+
+The PYTHONPATH=./src part of this command temporarily adds the project's src directory to Python's import path. This ensures that the test runner can correctly find and import the source code modules it needs to test.
+
+Running Specific Tests
+
+If you are working on a particular feature or bug and only want to run a specific test file, you can do so by providing the file path:
+
+```
+PYTHONPATH=./src pytest path/to/your/test-file.py
+```
+
+___
+
 Here's a quick example 
 
 <img src="https://github.com/archanags001/AI-Report-Generator/blob/48a61d00c5fccaaa0ed53233db8d45c5add79be8/images/report_ai_generated.png" alt="report gen" width="700">
