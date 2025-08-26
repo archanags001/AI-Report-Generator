@@ -4,6 +4,10 @@ Welcome to **AI Data Analyst & Report Generator** — an intelligent system that
 
 This project offers an AI-powered way to automate the entire process of transforming raw data into clear, professional reports, complete with visualizations and key insights. It significantly reduces manual effort and time, allowing users to quickly derive actionable value from their data and focus on strategic decision-making.
 
+**Live Application**
+
+You can view and interact with the deployed AI Data Analyst & Report Generator live on Streamlit Cloud here: https://ai-report-generator-2-0.streamlit.app
+
 ---
 
 ## 💬 Example Instructions You Can Provide
