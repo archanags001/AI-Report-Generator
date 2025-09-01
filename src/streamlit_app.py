@@ -225,20 +225,20 @@ if uploaded_file:
                                     key="download_pdf_button"
                                 )
                                 
-                                # with st.container():
-                                #     st.markdown(
-                                #         """
-                                #         <style>
-                                #         .stContainer > div {
-                                #             width: 55%;
-                                #             margin: auto;
-                                #         }
-                                #         </style>
-                                #         """,
-                                #         unsafe_allow_html=True
-                                #     )
+                                with st.container():
+                                    st.markdown(
+                                        """
+                                        <style>
+                                        .stContainer > div {
+                                            width: 55%;
+                                            margin: auto;
+                                        }
+                                        </style>
+                                        """,
+                                        unsafe_allow_html=True
+                                    )
 
-                                # display_pdf(pdf_file_content)
+                                display_pdf(pdf_file_content)
 
                                 # base64_pdf = base64.b64encode(pdf_file_content).decode("utf-8")
                                 # pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="600" type="application/pdf"></iframe>'
