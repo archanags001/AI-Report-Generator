@@ -99,7 +99,7 @@ def create_graph_workflow():
         check_safety_status,
         {
             "report_finalization": "report_finalization",
-            "report_drafting": "report_drafting",  # This is the key line for the retry loop
+            "report_drafting": "report_drafting",  
             END: END
         }
     )
